@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
+
+:root{
+  font-size: 24px;
+}
+
+body{
+  background: url('https://images.freecreatives.com/wp-content/uploads/2016/02/Subtle-Light-Pattern.png')
+}
+.App {
+  font-family: 'Dongle', sans-serif;
+}
+
+.app-title{
+  background:#2c3e50;
+  color:#ecf0f1;
+  padding: 8px;
+}
+
+.app-navbar i {
+  font-size: 16px;
+}
+
+.app-navbar .navbar-brand img{
+  width: 50px;
+}
+
+.app-home img {
+  width: 150px;
+}
+
+.table-head{
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+.app-AddKasbon{
+  background:#2c3e50;
+  color:#ecf0f1;
+  padding: 8px;
+}
