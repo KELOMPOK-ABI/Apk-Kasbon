@@ -35,8 +35,13 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/kasbons/addkasbon">
+                <Link className="nav-link" to="/kasbons/kasbon">
                   <i class="fa-solid fa-box me-2"></i>Add Kasbon
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/kasbons/detailkasbon">
+                  <i class="fa-solid fa-box me-2"></i>Detail Kasbon
                 </Link>
               </li>
               <li className="nav-item">
