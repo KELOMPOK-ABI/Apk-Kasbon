@@ -2,16 +2,21 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
 
-import Navbar from './components/Navbar'
 
-import AppTitle from './components/AppTitle';
-import Home from './pages/Home'
-import AddKasbon from './pages/AddKasbon'
-import DetailKasbon from './pages/DetailKasbon'
+import {
+  Home,
+  Users,
+  Kasbon,
+  DetailKasbon,
+  AddKasbon, 
+  UpdateKasbon,
+}from './pages'
+import Navbar from './components/Navbar'
+import AppTitle from './components/AppTitle'
 
 import {
   Routes,
-  Route
+  Route,
 }from 'react-router-dom'
 
 
@@ -26,17 +31,27 @@ function App() {
       <Route exact path="/" element={ <Home/>
       } />
 
+      <Route exact path="/users" element={
+        <Users></Users>
+      } />
+
+      <Route exact path="/kasbons/kasbon" element={
+        <Kasbon></Kasbon>
+      } />
+
+      <Route exact path="/kasbons/info/:id" element={
+        <DetailKasbon></DetailKasbon>
+      } />
+
       <Route exact path="/kasbons/addkasbon" element={
         <AddKasbon></AddKasbon>
-      } />
-      
-      <Route exact path = "/kasbons/info/:id" element={
-        <DetailKasbon></DetailKasbon>
-      }>
+      } /> 
 
-      </Route>
+      <Route exact path="/kasbons/update/:id" element={
+        <UpdateKasbon></UpdateKasbon>
+      } /> 
+
     </Routes>
-    
     </div>
   );
 }

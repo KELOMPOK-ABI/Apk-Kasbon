@@ -32,12 +32,12 @@ return (
       <table className="table table-hover table-bordered">
           <thead>
               <tr className="table-head">
-                  <th>Nomorkasbon</th>
+                  <th>Nomor Kasbon</th>
                   <th>Bagian</th>
                   <th>Penerima</th>
-                  <th>TanggalPersekot</th>
+                  <th>Tanggal Persekot</th>
                   <th>Jumlah</th>
-                  <th>Jumlahdibayar</th>
+                  <th>Jumlah dibayar</th>
                   <th>Uraian</th>
                   <th>Status</th>
                   <th>Actions</th>

@@ -1,59 +1,42 @@
-import React, {useState} from 'react'
-import { addKasbon } from '../fetch'
-// import axios from 'axios'
-// import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { getKasbons, editKasbon } from '../fetch'
 
-function AddKasbon() {
+function UpdateKasbon() {
     const [Nomorkasbon, setKasbon] = useState("")
     const [Bagian, setBagian] = useState("")
     const [Penerima, setPenerima] = useState("")
-    const [TanggalPersekot, setTglPersekot] = useState("")
+    const [TglPersekot, setTglPersekot] = useState("")
     const [Jumlah, setJumlah] = useState("")
     const [Uraian, setUraian] = useState("")
 
+    let params = useParams()
     const navigate = useNavigate()
-    const submitHandler= () => {
-        // console.log("Submit Handler")
-       
-         // console.log(kasbon)
-        // console.log(bagian)
-        // console.log(penerima)
-        // console.log(tglpersekot)
-        // console.log(jumlah)
-        // console.log(uraian)
+
+    useEffect(() => {
+        getKasbonsById(+params.id, result => {
+            setKasbon(result.Nomorkasbon)
+            setBagian(result.Bagian)
+            setPenerima(result.Penerima)
+            setTglPersekot(result.TglPersekot)
+            setJumlah(result.Jumlah)
+            setUraian(result.Uraian)
+
+            getUsers(user => {
+                setUsers(user)
+              })
+        })
+    }, [])
+
+
+    const submitHandler = () => {
         let tempObj = {
-            Nomorkasbon, Bagian, Penerima, TanggalPersekot, Jumlah, Uraian      
+            Nomorkasbon, Bagian, Penerima, TglPersekot, Jumlah, Uraian
         }
-        addKasbonHandler(tempObj)
-    }
+        editKasbon(tempObj, params.id)
+        navigate('/kasbons')
 
-    const addKasbonHandler = (obj) => {
-        console.log("Add User Handler")
-        const {Nomorkasbon, Bagian, Penerima, TanggalPersekot, Jumlah, Uraian} = obj
-        axios({
-            // type: 'POST',
-            method: 'POST',
-            url: 'http://localhost:3000/kasbons',
-            data: {
-                Nomorkasbon, Bagian, Penerima, TanggalPersekot, Jumlah, Uraian 
-            }
-        })
-        .then(result => {
-            console.log(result)
-            Swal.fire(
-                'SUKSES',
-                'Kasbon Ditambah',
-                'Pastikan Ulang Data Kasbon BENAR'
-              )
-            navigate("/kasbons")
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-
-  return (
+return (
     <div className="container">
         <div className="row">
             <div className="col-9 mx-auto">
@@ -68,6 +51,7 @@ function AddKasbon() {
                              id="kasbon-label"
                              className="form-control" 
                              placeholder='Insert Kasbon'
+                             value={Nomorkasbon}
                              onChange={(e) => setKasbon(e.target.value)}
                             ></input>
                          </div>
@@ -77,6 +61,7 @@ function AddKasbon() {
                             id="bagian-label" 
                             className="form-control" 
                             placeholder='Insert Bagian'
+                            value={Bagian}
                             onChange={(e) => setBagian(e.target.value)}
                             ></input>
                          </div>
@@ -86,6 +71,7 @@ function AddKasbon() {
                             id="penerima-label" 
                             className="form-control" 
                             placeholder='Insert Penerima'
+                            value={Penerima}
                             onChange={(e) => setPenerima(e.target.value)}
                             ></input>
                          </div>
@@ -95,6 +81,7 @@ function AddKasbon() {
                             id="tglpersekot-label" 
                             className="form-control" 
                             placeholder='Insert Tanggal Persekot'
+                            value={TglPersekot}
                             onChange={(e) => setTglPersekot(e.target.value)}
                             ></input>
                          </div>
@@ -104,6 +91,7 @@ function AddKasbon() {
                             id="jumlah-label" 
                             className="form-control" 
                             placeholder='Insert Jumlah'
+                            value={Jumlah}
                             onChange={(e) => setJumlah(e.target.value)}
                             ></input>
                          </div>
@@ -113,6 +101,7 @@ function AddKasbon() {
                             id="uraian-label" 
                             className="form-control" 
                             placeholder='Insert Uraian'
+                            value={Uraian}
                             onChange={(e) => setUraian(e.target.value)}
                             ></input>
                          </div>
@@ -123,12 +112,14 @@ function AddKasbon() {
                     </div>
                     <div className="col-6">
                         <img className="img-fluid"src="https://images.pexels.com/photos/2397652/pexels-photo-2397652.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=400"></img>
+                    
                     </div>
                 </div>
+            
             </div>
         </div>
     </div>
   )
 }
 
-export default AddKasbon
+export default UpdateKasbon
